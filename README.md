@@ -22,10 +22,10 @@ crewai install
 
 **Add your `OPENAI_API_KEY` into the `.env` file**
 
-- Modify `src/new_project/config/agents.yaml` to define your agents
-- Modify `src/new_project/config/tasks.yaml` to define your tasks
-- Modify `src/new_project/crew.py` to add your own logic, tools and specific args
-- Modify `src/new_project/main.py` to add custom inputs for your agents and tasks
+- Modify `src/news_writer/config/agents.yaml` to define your agents
+- Modify `src/news_writer/config/tasks.yaml` to define your tasks
+- Modify `src/news_writer/crew.py` to add your own logic, tools and specific args
+- Modify `src/news_writer/main.py` to add custom inputs for your agents and tasks
 
 ## Running the Project
 
