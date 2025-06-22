@@ -1,0 +1,54 @@
+retrieve_news_task:
+  description: >
+    Conduct a thorough research about {topic}
+    Make sure you find any interesting and relevant information given
+    the current date is {date}.
+  expected_output: >
+    A list of 10 web sites with the most relevant information about {topic}
+  agent: retrieve_news
+
+website_scrape_task:
+  description: >
+    Scrape the web site for the latest news and information about {topic}
+  expected_output: >
+    Fully scraped websites with all the important information from the website.
+  agent: website_scraper
+
+ai_news_write_task:
+  description: >
+    Summarize the information about {topic} from the websites into a fully-fledged news article in HTML format.
+    Use the current date {date} in the article header instead of any hardcoded dates.
+  expected_output: >
+    A fully-fledged news article with the main topics, each with a full section of information.
+    Formatted as HTML without '```'. The article should include the current date {date} in the header.
+  agent: ai_news_writer
+
+file_write_task:
+  description: >
+    Write the news article to a file.
+    Generate a new timestamp using the current date and time for the filename.
+    Use the format: {date}_news_article.md
+    
+    IMPORTANT: Use the news article content from the ai_news_write_task output.
+    The output from ai_news_write_task contains the HTML formatted news article.
+    Do not generate new content - write the existing article content from the ai_news_write_task to the file.
+    
+    The content should be the exact HTML output from the ai_news_write_task.
+  expected_output: >
+    A confirmation that the news article from ai_news_write_task has been written to a uniquely timestamped file inside of news/{date}_news_article.md
+  agent: file_writer
+
+email_task:
+  description: >
+    Send the AI-generated news article via email to {to_email}.
+    Use "AI News Update: {topic}" as the subject.
+    
+    IMPORTANT: Use the news article content from the ai_news_write_task output.
+    The output from ai_news_write_task contains the HTML formatted news article.
+    Do not generate new content - use the existing article content from the ai_news_write_task.
+    
+    The content should be the exact HTML output from the ai_news_write_task.
+  expected_output: >
+    A confirmation that the email has been sent with the news article content from ai_news_write_task
+  agent: email_manager
+  
